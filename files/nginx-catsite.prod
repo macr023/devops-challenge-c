@@ -1,0 +1,14 @@
+server {
+
+location /meow/ {
+	proxy_pass http://placekitten.com/;
+}
+
+  #testing
+  listen 80 default_server;
+
+  root /var/www/catsite;
+  index index.html;
+
+  server_name cats.example.com;
+}

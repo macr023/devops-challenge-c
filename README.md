@@ -18,6 +18,8 @@ This repo uses Ansible to install and configure nginx to serve static content
 from a directory.  The target host is expected to be running Ubuntu 14.04 (but
 other Ubuntu versions will likely work).
 
+**Added by Mark Pires** This may be due to my ignorance on ansible, but ssh keys were required for authentication between host and server. Also sudo access required NOPASSWD setup. ( I will admit I did not look at ansible man page and instead resolved these issues by creating and sharing the key plus changing sudo config) 
+
 We need to add a reverse proxy to the site, but *only* for our production
 site.  When the code is deployed on a development or test site, the reverse
 proxy should be disabled.  The location /meow/ on the production site should
@@ -25,16 +27,16 @@ proxy requests to http://placekitten.com/ .
 
 ## Usage instructions:
 
-To deploy to a machine, run:
+To deploy environment to a machine, run:
 
-```ansible-playbook playbook.yml -i "HOST," --extra-vars="user=USER"```
+```ansible-playbook playbook.yml -i "HOST," --extra-vars="user=USER env=ENVIRONMENT"```
 
-Replace HOST by the hostname or IP address, and USER by the username (must have
-sudo access).
+Replace HOST by the hostname or IP address, USER by the username (must have
+sudo access) and ENVIRONMENT by {dev or prod} (depnding if its a development/test or production environment).
 
-For example, for a machine with IP `52.0.228.95` and a username of `ubuntu`:
+For example, for a machine with IP `52.0.228.95` and a username of `ubuntu` and environment `dev` :
 
-```ansible-playbook playbook.yml -i "52.0.228.95," --extra-vars="user=ubuntu"```
+```ansible-playbook playbook.yml -i "52.0.228.95," --extra-vars="user=ubuntu env=dev"```
 
 ## Resources:
 

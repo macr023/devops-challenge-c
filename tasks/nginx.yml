@@ -10,7 +10,7 @@
   register: nginx_default_config
 
 - name: Install/update nginx config for catsite
-  copy: src=nginx-catsite dest=/etc/nginx/sites-enabled/catsite
+  copy: src=nginx-catsite.{{env}} dest=/etc/nginx/sites-enabled/catsite
   register: nginx_catsite_config
 
 - name: Reload nginx configuration
